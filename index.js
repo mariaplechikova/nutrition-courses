@@ -437,7 +437,9 @@ buttonReset.addEventListener('click', function() {
 window.addEventListener('resize', () => {
     if(window.innerWidth > 1440) {
         form.style.display = 'block'
-    } 
+    } else {
+        form.style.display = 'none'
+    }
   });
 
 // Ползунок

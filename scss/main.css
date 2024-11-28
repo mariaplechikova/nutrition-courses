@@ -75,6 +75,9 @@ a {
   font-weight: 500;
   padding: 0px;
 }
+.content__filtr-button:hover {
+  cursor: pointer;
+}
 
 .form {
   display: none;
@@ -129,6 +132,9 @@ a {
   color: white;
   font-weight: 500;
 }
+.form__button-apply:hover {
+  cursor: pointer;
+}
 .form__button-reset {
   width: 305px;
   height: 50px;
@@ -139,6 +145,9 @@ a {
   box-shadow: none;
   font-size: 16px;
   font-weight: 500;
+}
+.form__button-reset:hover {
+  cursor: pointer;
 }
 
 .form-black {
@@ -241,6 +250,9 @@ a {
   border: none;
   font-size: 18px;
   border-radius: 4px;
+}
+.courses__block__button:hover {
+  cursor: pointer;
 }
 .courses__block form {
   margin-top: 15px;
