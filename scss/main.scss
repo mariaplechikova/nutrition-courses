@@ -247,11 +247,11 @@ a {
             font-weight: 400;
             margin-top: 15px;
             bottom: 100px;
+            &__span {
+                font-weight: 500;
+            }
         }
 
-        &__duration span {
-            font-weight: 500;
-        }
         &__button {
             width: 305px;
             height: 50px;
@@ -425,10 +425,11 @@ a {
                 margin: 9px;
                 position: absolute;
                 bottom: 100px;
+                &__span {
+                    font-weight: 500;
+                }
             }
-            &__duration span {
-                font-weight: 500;
-            }
+            
             &__button {
                 height: 60px;
                 font-size: 18px;

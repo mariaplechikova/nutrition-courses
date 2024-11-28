@@ -238,7 +238,7 @@ a {
   margin-top: 15px;
   bottom: 100px;
 }
-.courses__block__duration span {
+.courses__block__duration__span {
   font-weight: 500;
 }
 .courses__block__button {
@@ -408,7 +408,7 @@ a {
     position: absolute;
     bottom: 100px;
   }
-  .courses__block__duration span {
+  .courses__block__duration__span {
     font-weight: 500;
   }
   .courses__block__button {

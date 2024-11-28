@@ -381,9 +381,9 @@ const beautyCourse = document.querySelector('.beauty-course');
 const formBlack = document.querySelector('.form-black');
 const radiosCategory = document.querySelectorAll('input[name="category"]');
 const radiosResult = document.querySelectorAll('input[name="result"]');
-let onRadiosCategory
-let onRadiosResult
-let onDuration
+let onRadiosCategory = ''
+let onRadiosResult = ''
+let onSlider
 let newCourses = []
 let neNutrition = []
 let newSport = []
@@ -412,7 +412,7 @@ formBlock.addEventListener('click', function() {
 
 // Кнопка формы "Применить"
 buttonApply.addEventListener('click', function() {
-    let result = courses.filter(item => {return item.category == onRadiosCategory  || item.result == onRadiosResult || item.days <= onRadiosResult});
+    let result = courses.filter(item => {return item.category == onRadiosCategory  || item.result == onRadiosResult || item.days <= onSlider});
     render(result)
     newCourses = newCourses.concat(result)
     formBlack.style.display = 'none'
@@ -420,6 +420,9 @@ buttonApply.addEventListener('click', function() {
         form.style.display = 'none'
         filtrButton.textContent = 'Показать фильтр'
     } 
+    // if(onRadiosCategory == '' &&  onRadiosResult == '') {
+    //     render(courses)
+    // } 
 })
 // Кнопка формы "Сбросить фильтр"
 buttonReset.addEventListener('click', function() {
@@ -430,7 +433,7 @@ buttonReset.addEventListener('click', function() {
     for (let i=0; i<radiosResult.length; i++) {
         radiosResult[i].checked = false
     }
-    slider.value = 365
+    slider.value = 730
     render(courses)
 })
 
@@ -446,8 +449,8 @@ window.addEventListener('resize', () => {
 let slider = document.getElementById("myRange");
 let output = document.getElementById("demo");
 slider.oninput = function() {
-  onRadiosResult = this.value;
-  console.log(onRadiosResult)
+    onSlider = this.value;
+  console.log(onSlider)
 }
 
 // Кнопка "Показать фильтр"" в мобильной версии
@@ -542,7 +545,7 @@ function render(arr) {
         text(arrP)
 
         let string3 = `<div class="courses__block__duration">
-                        Срок обучения: <span>${arr[i].duration}</span>
+                        Срок обучения: <span class="courses__block__duration__span">${arr[i].duration}</span>
                     </div>
                     
                     <form action=${arr[i].url}>
