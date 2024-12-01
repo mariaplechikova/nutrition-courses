@@ -383,7 +383,7 @@ const radiosCategory = document.querySelectorAll('input[name="category"]');
 const radiosResult = document.querySelectorAll('input[name="result"]');
 let onRadiosCategory = ''
 let onRadiosResult = ''
-let onSlider
+let onSlider = 730
 let newCourses = []
 let neNutrition = []
 let newSport = []
@@ -394,8 +394,6 @@ render(courses)
 
 // Cнимаем показания с формы
 formBlock.addEventListener('click', function() {
-    onRadiosCategory = '';
-    onRadiosResult = '';
     for (let i=0; i<radiosCategory.length; i++) {
         if (radiosCategory[i].checked) {
             onRadiosCategory = radiosCategory[i].value
@@ -408,11 +406,39 @@ formBlock.addEventListener('click', function() {
             console.log(onRadiosResult)
         }
     }
+
+    console.log('категория' + onRadiosCategory)
+    console.log('результат' + onRadiosResult)
+    console.log('длительность' + slider.value)
 })
 
 // Кнопка формы "Применить"
 buttonApply.addEventListener('click', function() {
-    let result = courses.filter(item => {return item.category == onRadiosCategory  || item.result == onRadiosResult || item.days <= onSlider});
+    let result 
+
+    if (onRadiosResult == '') {
+        result = courses.filter(item => {return item.category == onRadiosCategory && item.days <= onSlider});
+    } 
+
+    if (onRadiosCategory == '') {
+        result = courses.filter(item => {return item.result == onRadiosResult && item.days <= onSlider});
+    } 
+
+    if (onRadiosResult != '' && onRadiosCategory != '') {
+        result = courses.filter(item => {return item.category == onRadiosCategory  && item.result == onRadiosResult && item.days <= onSlider});
+        } 
+        
+    if (onRadiosResult == '' && onRadiosCategory == '') {
+        result = courses.filter(item => {return item.days <= onSlider});
+        } 
+
+    console.log('qwe' + onRadiosCategory)
+    console.log('qwe' + onRadiosResult)
+    console.log('qwe' + slider.value)
+    console.log(result)
+
+    
+
     render(result)
     newCourses = newCourses.concat(result)
     formBlack.style.display = 'none'
@@ -420,10 +446,17 @@ buttonApply.addEventListener('click', function() {
         form.style.display = 'none'
         filtrButton.textContent = 'Показать фильтр'
     } 
-    // if(onRadiosCategory == '' &&  onRadiosResult == '') {
-    //     render(courses)
-    // } 
 })
+
+    // Ползунок
+    let slider = document.getElementById("myRange");
+    slider.oninput = function() {
+        onSlider = this.value;
+        let positionSlider = onSlider * 100 / 730
+        this.style.background = `linear-gradient(to right, #1D7AD3 ${positionSlider}%, #DBEDFF ${positionSlider}%)`;
+        console.log(onSlider)
+    }
+
 // Кнопка формы "Сбросить фильтр"
 buttonReset.addEventListener('click', function() {
     
@@ -433,6 +466,8 @@ buttonReset.addEventListener('click', function() {
     for (let i=0; i<radiosResult.length; i++) {
         radiosResult[i].checked = false
     }
+    onRadiosCategory = ''
+    onRadiosResult = ''
     slider.value = 730
     render(courses)
 })
@@ -444,14 +479,6 @@ window.addEventListener('resize', () => {
         form.style.display = 'none'
     }
   });
-
-// Ползунок
-let slider = document.getElementById("myRange");
-let output = document.getElementById("demo");
-slider.oninput = function() {
-    onSlider = this.value;
-  console.log(onSlider)
-}
 
 // Кнопка "Показать фильтр"" в мобильной версии
 filtrButton.addEventListener('click', function() {
